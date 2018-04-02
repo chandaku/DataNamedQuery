@@ -11,6 +11,6 @@ import java.util.List;
 public interface CompanyRepository extends JpaRepository<Company,Integer> {
     List<Company> findByName(String xebia);
 
-    @Query("from Company company join fetch company.employees")
+    @Query("select distinct company from Company company left join fetch company.employees")
     List<Company> findAll();
 }
