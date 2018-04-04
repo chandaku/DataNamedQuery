@@ -18,6 +18,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedEntityGraphs;
+import javax.persistence.NamedSubgraph;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -32,7 +33,9 @@ import java.util.List;
 @Entity
 @Table(name = "company")
 @NamedEntityGraphs( {@NamedEntityGraph (name = "graph.Company.employees",
-        attributeNodes = @NamedAttributeNode("employees"))})
+        attributeNodes = @NamedAttributeNode(value = "employees", subgraph = "add"),
+        subgraphs = @NamedSubgraph( name = "add", attributeNodes = @NamedAttributeNode("address")))
+        })
 public class Company {
 
     @Id
