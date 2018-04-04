@@ -15,6 +15,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -28,6 +31,8 @@ import java.util.List;
 @ToString
 @Entity
 @Table(name = "company")
+@NamedEntityGraphs( {@NamedEntityGraph (name = "graph.Company.employees",
+        attributeNodes = @NamedAttributeNode("employees"))})
 public class Company {
 
     @Id
